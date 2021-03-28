@@ -41,11 +41,11 @@
                 zaxis: { title: 'Longitude' },
             }
         };
-        	function sleep (time) {
+        function sleep (time) {
             return new Promise((resolve) => setTimeout(resolve, time));
         }
         sleep(2000).then(() => {
             Plotly.newPlot('plot', [longitude], layout);
-	    });
+	});
     </script>
 </body>
