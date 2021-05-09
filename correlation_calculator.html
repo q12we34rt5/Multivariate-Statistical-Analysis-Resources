@@ -117,9 +117,21 @@
         var input2 = document.querySelector('#order2');
         var output = document.querySelector('#corr-display')
         function input() {
-            var ord1 = input1.value.split(" ").map(item => parseInt(item, 10));
-            var ord2 = input2.value.split(" ").map(item => parseInt(item, 10));
+            var ord1 = input1.value.replace(/[\s]+/g, ' ').split(' ').map(item => parseInt(item, 10));
+            var ord2 = input2.value.replace(/[\s]+/g, ' ').split(' ').map(item => parseInt(item, 10));
+            addarray(ord1, 1);
+            addarray(ord2, 1);
             output.value = 'Correlation: ' + pcorr(argsort(ord1), argsort(ord2));
+        }
+        function addarray(array, value) {
+            for (var i = 0; i < array.length; i++)
+                array[i] += value;
+        }
+        function dotarray(array1, array2) {
+            var value = 0;
+            for (var i = 0; i < array1.length; i++)
+                value += array1[i] * array2[i];
+            return value;
         }
         function argsort(array) {
             const arrayObject = array.map((value, idx) => { return { value, idx }; });
@@ -136,22 +148,17 @@
             return argIndices;
         }
         function pcorr(x, y) {
-            let sumX = 0,
-                sumY = 0,
-                sumXY = 0,
-                sumX2 = 0,
-                sumY2 = 0;
-            const minLength = x.length = y.length = Math.min(x.length, y.length),
-                reduce = (xi, idx) => {
-                    const yi = y[idx];
-                    sumX += xi;
-                    sumY += yi;
-                    sumXY += xi * yi;
-                    sumX2 += xi * xi;
-                    sumY2 += yi * yi;
-                }
-            x.forEach(reduce);
-            return (minLength * sumXY - sumX * sumY) / Math.sqrt((minLength * sumX2 - sumX * sumX) * (minLength * sumY2 - sumY * sumY));
+            if (x.length != y.length || x.length <= 0) return null;
+            var meanx = 0, meany = 0;
+            x.forEach(item => meanx += item);
+            y.forEach(item => meany += item);
+            meanx /= x.length;
+            meany /= y.length;
+            var mx = x.slice();
+            var my = y.slice();
+            addarray(mx, -meanx);
+            addarray(my, -meany);
+            return dotarray(mx, my) / (Math.sqrt(dotarray(mx, mx)) * Math.sqrt(dotarray(my, my)));
         }
     </script>
 </body>
