@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>多變量分析</title>
+    <link href="clock.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="clock.js"></script>
+    <style type='text/css'>
+        body,
+        html {
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 0px;
+            z-index: 0;
+        }
+
+        #refreshButton {
+            position: absolute;
+            margin-left: 0.3vw;
+            margin-top: 0.3vw;
+            z-index: 1;
+            color: #1f546e;
+            font-size: 1.2vw;
+            background-color: #091921;
+            border: 2px solid #091921;
+            border-radius: 10px;
+        }
+
+        #refreshButton:hover {
+            box-shadow:
+                inset -5px -5px 5px rgba(255, 255, 255, 0.05),
+                inset 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <iframe id='hackmdIframe' src='https://hackmd.io/@q12we34rt5/BJ9W9Nxd_#/'></iframe>
+
+    <button id='refreshButton' onclick='Refresh("#hackmdIframe")'>Refresh</button>
+
+    <div id='dig-clock' style='z-index: 2;'>
+        <div id='dig-display'></div>
+        <div id='control-panel'>
+            <button onclick="start()">Start</button>
+            <button onclick="pause()">Pause</button>
+            <button onclick="init()">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        function Refresh(iframeName) {
+            var iframe = document.querySelector(iframeName);
+            var iframeParent = iframe.parentNode;
+            var iframeSrc = iframe.src;
+            iframeParent.removeChild(iframe);
+            iframe = document.createElement('iframe'); 
+            iframe.id = 'hackmdIframe';
+            iframe.src= iframeSrc;  
+            document.body.appendChild(iframe);
+        }
+    </script>
+
+    <!-- initial digital clock -->
+    <script type='text/javascript'>
+        dragElement(document.querySelector('#dig-clock'));
+        setClockDiv('#dig-display');
+    </script>
+</body>
+
+</html>
