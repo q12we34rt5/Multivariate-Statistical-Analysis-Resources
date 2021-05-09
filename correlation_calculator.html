@@ -148,7 +148,7 @@
             return argIndices;
         }
         function pcorr(x, y) {
-            if (x.length != y.length || x.length <= 0) return null;
+            if (x.length != y.length || x.length <= 0) return NaN;
             var meanx = 0, meany = 0;
             x.forEach(item => meanx += item);
             y.forEach(item => meany += item);
