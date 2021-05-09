@@ -1,0 +1,71 @@
+@import url(https://fonts.googleapis.com/css2?family=Inconsolata&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=VT323&display=swap);
+
+body {
+    background-color: transparent;
+}
+
+#dig-clock {
+    --digit-size: 2.5vw;
+    --sep: 10px;
+    background-color: #091921;
+    display: flex;
+    position: absolute;
+    -webkit-box-reflect: below -1px linear-gradient(transparent, #091921);
+}
+
+#dig-clock #dig-display {
+    width: calc(var(--digit-size) * 0.74 * 5 + 10px);
+    height: calc(var(--digit-size) * 1 + 5px);
+    margin-top: auto;
+    margin-left: var(--sep);
+    margin-right: 0px;
+    margin-bottom: auto;
+    border: calc(var(--digit-size) / 20) solid white;
+    border-radius: calc(var(--digit-size) / 10);
+    background-color: #091921;
+    color: #ffffff;
+    text-align: top;
+    font-family: 'Major Mono Display';
+    font-size: var(--digit-size);
+    text-shadow:
+        0px 0px 10px #03bcf4,
+        0px 0px 20px #03bcf4,
+        0px 0px 40px #03bcf4,
+        0px 0px 80px #03bcf4,
+        0px 0px 120px #03bcf4;
+    box-shadow: 0px -5px 10px #03bcf47f;
+}
+
+#dig-clock #control-panel {
+    height: calc(var(--digit-size) * 1 + 5px) + 6px;
+    border: var(--sep) solid transparent;
+    margin-top: auto;
+    margin-left: 0px;
+    margin-right: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#dig-clock #control-panel>button {
+    margin-top: calc(var(--digit-size) / 50);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: calc(var(--digit-size) / 50);
+    font-size: calc(var(--digit-size) / 4);
+    font-family: 'Inconsolata';
+    border: calc(var(--digit-size) / 50) solid white;
+    border-radius: calc(var(--digit-size) / 25);
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 0px 5px #03bcf4;
+    box-shadow: 0px -2px 5px #03bcf47f;
+    transition-duration: 0.4s;
+}
+
+#dig-clock #control-panel>button:hover {
+    box-shadow:
+        0px 0px 15px #03bcf4,
+        inset 0px 0px 10px #03bcf4;
+}
