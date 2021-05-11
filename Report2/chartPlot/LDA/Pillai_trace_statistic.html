@@ -13,9 +13,9 @@
 
 <body>
 
-    <canvas id="lda-plot" width='7' height='4'></canvas>
+    <canvas id="plot" width='7' height='4'></canvas>
     <script>
-        var ctx = document.getElementById('lda-plot').getContext('2d');
+        var ctx = document.getElementById('plot').getContext('2d');
         var TestChart2 = null;
         readTextFile("source/Pillai_trace_statistic.json", function (text) {
             TestChart2 = new Chart(ctx, JSON.parse(text));
