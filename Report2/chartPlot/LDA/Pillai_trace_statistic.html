@@ -16,9 +16,9 @@
     <canvas id="plot" width='7' height='4'></canvas>
     <script>
         var ctx = document.getElementById('plot').getContext('2d');
-        var TestChart2 = null;
+        var ChartPlot = null;
         readTextFile("source/Pillai_trace_statistic.json", function (text) {
-            TestChart2 = new Chart(ctx, JSON.parse(text));
+            ChartPlot = new Chart(ctx, JSON.parse(text));
         });
         function readTextFile(file, callback) {
             var rawFile = new XMLHttpRequest();
